@@ -23,6 +23,9 @@
   $row = $results->fetchArray(SQLITE3_ASSOC);
 
   $epoch = $row['date'];
+  if($epoch == '') {
+    $epoch = 0;
+  }
   $date = new DateTime("@$epoch");
 
   $unit = "";
@@ -216,18 +219,19 @@
 
         <tr>
           <td class="tname">Information:</td>
-          <td><a href="<?php echo $row['website_link'] ?>" rel="nofollow"><?php echo $row['website_link'] ?></a></td>
+          <td><a href="<?php
+          if($row['website_link'] == ''){echo '#';}else{echo $row['website_link'];}?>" rel="nofollow"><?php if($row['website_link'] == '') {echo 'None';}else echo $row['website_link'] ?></a></td>
           <td class="tname">Downloads:</td>
-          <td class="vtop"><span class="viewdn"><?php echo $row['downloads'] ?></span></td>
+          <td class="vtop"><span class="viewdn"><?php if($row['downloads'] == '') {echo '0';}else echo $row['downloads'] ?></span></td>
         </tr>
         <tr>
           <td class="tname">Stardom:</td>
           <td><b>
             <?php
-              if ($row['stardom'] < 0) {
+              if ($row['stardom'] < 0 || $row['stardom'] == '') {
                 $row['stardom'] = 0;
               }
-              echo $row['stardom']
+              echo $row['stardom'];
             ?>
             </b> fan(s).</td>
           <td class="tname">File size:</td>
@@ -251,7 +255,12 @@
        </div>
 
        <h3 style="clear:both;padding-top:10px;">Torrent description:</h3>
-       <?php echo $row['description']; ?>
+       <?php
+        if($row['description'] == '') {
+          $row['description'] = '<div class="viewdescription">None</div>';
+        }
+        echo $row['description'];
+      ?>
        <h3>Files in torrent:</h3>
        [<a href="showfiles.php?id=<?php echo $row['torrent_id'] ?>" class="viewilink" rel="nofollow">Show files</a>]
        <br>

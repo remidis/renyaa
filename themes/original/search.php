@@ -280,6 +280,9 @@
     $img = '<img src="img/torrents/'.$row['sub_category_id'].'.png">';
 
     $epoch = $row['date'];
+    if($epoch == '') {
+      $epoch = 0;
+    }
     $date = new DateTime("@$epoch");
 
     $unit = "";
@@ -390,6 +393,9 @@
 
 </div>
 </div>
+<div style="color:#ffffff;float:left;margin-bottom:6px;padding-left:10%;background:url('topbar.png') repeat-x black;width:100%;">
+  <h4><a id="nostyle" href="./index.php">Re:Nyaa</a> - 2017 Re:Nyaa Team - Source available on
+  <a href="https://github.com/renyaa/renyaa">GitHub</a></h4>
 </div>
 
 </body>
