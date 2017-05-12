@@ -245,7 +245,7 @@
           </form>
         </div>
       </div>
-      <a href="#!">Have an account? Proceed to Login</a>
+      <a href="./login.php">Have an account? Proceed to Login</a>
     </center>
 
     <div class="section"></div>
